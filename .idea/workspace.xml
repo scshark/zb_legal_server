@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7abd8d8c-6352-48a2-9a28-7579af75813b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/cors.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,15 +37,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/initialize/mysql.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
@@ -65,11 +57,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/router/sys_auto_code.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="310">
+              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/middleware/cors.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="12" column="120" selection-start-line="12" selection-start-column="120" selection-end-line="12" selection-end-column="120" />
             </state>
           </provider>
         </entry>
@@ -167,6 +168,7 @@
         <option value="$PROJECT_DIR$/config.yaml" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/core/config.go" />
+        <option value="$PROJECT_DIR$/middleware/cors.go" />
       </list>
     </option>
   </component>
@@ -205,6 +207,11 @@
               <item name="zb_legal_server" type="b2602c69:ProjectViewProjectNode" />
               <item name="zb_legal_server" type="462c0819:PsiDirectoryNode" />
               <item name="initialize" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zb_legal_server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zb_legal_server" type="462c0819:PsiDirectoryNode" />
+              <item name="middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zb_legal_server" type="b2602c69:ProjectViewProjectNode" />
@@ -269,12 +276,12 @@
       <workItem from="1594810741835" duration="1519000" />
       <workItem from="1594883649272" duration="3496000" />
       <workItem from="1595597197670" duration="6923000" />
-      <workItem from="1595862744689" duration="667000" />
+      <workItem from="1595862744689" duration="1709000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40110000" />
+    <option name="totallyTimeSpent" value="41152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1792" height="1042" extended-state="0" />
@@ -476,13 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/cors.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/router/exp_customer.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -587,8 +587,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/router/sys_auto_code.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="310">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/cors.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="12" column="120" selection-start-line="12" selection-start-column="120" selection-end-line="12" selection-end-column="120" />
         </state>
       </provider>
     </entry>
