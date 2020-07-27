@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"gin-vue-admin/global"
 	"gin-vue-admin/model"
 	"gin-vue-admin/model/request"
@@ -13,6 +14,9 @@ import (
 // @return    err             error
 
 func CreateSysDictionary(sysDictionary model.SysDictionary) (err error) {
+	if (!global.GVA_DB.First(&model.SysDictionary{}, "type = ?", sysDictionary.Type).RecordNotFound()) {
+		return errors.New("存在相同的type，不允许创建")
+	}
 	err = global.GVA_DB.Create(&sysDictionary).Error
 	return err
 }
@@ -42,7 +46,16 @@ func UpdateSysDictionary(sysDictionary *model.SysDictionary) (err error) {
 		"Status": sysDictionary.Status,
 		"Desc":   sysDictionary.Desc,
 	}
-	err = global.GVA_DB.Where("id = ?", sysDictionary.ID).First(&dict).Updates(sysDictionaryMap).Error
+	db := global.GVA_DB.Where("id = ?", sysDictionary.ID).First(&dict)
+	if dict.Type == sysDictionary.Type {
+		err = db.Updates(sysDictionaryMap).Error
+	} else {
+		if (!global.GVA_DB.First(&model.SysDictionary{}, "type = ?", sysDictionary.Type).RecordNotFound()) {
+			return errors.New("存在相同的type，不允许创建")
+		} else {
+			err = db.Updates(sysDictionaryMap).Error
+		}
+	}
 	return err
 }
 
@@ -53,8 +66,8 @@ func UpdateSysDictionary(sysDictionary *model.SysDictionary) (err error) {
 // @return                    error
 // @return    SysDictionary        SysDictionary
 
-func GetSysDictionary(id uint) (err error, sysDictionary model.SysDictionary) {
-	err = global.GVA_DB.Where("id = ?", id).Preload("SysDictionaryDetails").First(&sysDictionary).Error
+func GetSysDictionary(Type string, Id uint) (err error, sysDictionary model.SysDictionary) {
+	err = global.GVA_DB.Where("type = ? OR id = ?", Type, Id).Preload("SysDictionaryDetails").First(&sysDictionary).Error
 	return
 }
 
@@ -72,16 +85,16 @@ func GetSysDictionaryInfoList(info request.SysDictionarySearch) (err error, list
 	var sysDictionarys []model.SysDictionary
 	// 如果有条件搜索 下方会自动创建搜索语句
 	if info.Name != "" {
-		db = db.Where("name LIKE ?", "%"+info.Name+"%")
+		db = db.Where("`name` LIKE ?", "%"+info.Name+"%")
 	}
 	if info.Type != "" {
-		db = db.Where("type LIKE ?", "%"+info.Type+"%")
+		db = db.Where("`type` LIKE ?", "%"+info.Type+"%")
 	}
 	if info.Status != nil {
-		db = db.Where("status = ?", info.Status)
+		db = db.Where("`status` = ?", info.Status)
 	}
 	if info.Desc != "" {
-		db = db.Where("desc LIKE ?", "%"+info.Desc+"%")
+		db = db.Where("`desc` LIKE ?", "%"+info.Desc+"%")
 	}
 	err = db.Count(&total).Error
 	err = db.Limit(limit).Offset(offset).Find(&sysDictionarys).Error
