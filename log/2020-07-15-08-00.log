@@ -1,7 +1,0 @@
-[GIN-VUE-ADMIN]2020/07/15 - 19:03:17.175 /Users/scshark/golangProject/gin-vue-admin/server/initialize/mysql.go:14 ▶ [ERROR] MySQL启动异常 dial tcp 127.0.0.1:3306: connect: connection refused
-[GIN-VUE-ADMIN]2020/07/15 - 19:06:41.669 /Users/scshark/golangProject/gin-vue-admin/server/initialize/db_table.go:25 ▶ [DEBUG] register table success
-[GIN-VUE-ADMIN]2020/07/15 - 19:06:41.669 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:18 ▶ [DEBUG] use middleware logger
-[GIN-VUE-ADMIN]2020/07/15 - 19:06:41.669 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:21 ▶ [DEBUG] use middleware cors
-[GIN-VUE-ADMIN]2020/07/15 - 19:06:41.669 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:23 ▶ [DEBUG] register swagger handler
-[GIN-VUE-ADMIN]2020/07/15 - 19:06:41.676 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:40 ▶ [INFO] router register success
-[GIN-VUE-ADMIN]2020/07/15 - 19:06:41.676 /Users/scshark/golangProject/gin-vue-admin/server/core/server.go:33 ▶ [DEBUG] server run success on  :8888

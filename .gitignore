@@ -1,0 +1,7 @@
+.idea/
+config.yaml
+go.mod
+go.sum
+log/
+.git/
+Dockerfile

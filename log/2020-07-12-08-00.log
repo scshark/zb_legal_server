@@ -1,7 +1,0 @@
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.975 /Users/scshark/golangProject/gin-vue-admin/server/initialize/db_table.go:25 ▶ [DEBUG] register table success
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.976 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:18 ▶ [DEBUG] use middleware logger
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.976 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:21 ▶ [DEBUG] use middleware cors
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.976 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:23 ▶ [DEBUG] register swagger handler
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.977 /Users/scshark/golangProject/gin-vue-admin/server/initialize/router.go:40 ▶ [INFO] router register success
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.977 /Users/scshark/golangProject/gin-vue-admin/server/core/server.go:33 ▶ [DEBUG] server run success on  :8888
-[GIN-VUE-ADMIN]2020/07/13 - 02:25:31.977 /Users/scshark/golangProject/gin-vue-admin/server/core/server.go:39 ▶ [ERROR] listen tcp :8888: bind: address already in use
