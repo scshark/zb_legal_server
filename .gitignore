@@ -5,3 +5,8 @@ go.sum
 log/
 .git/
 Dockerfile
+db/
+*.db
+main
+gin-vue-admin
+latest_log
