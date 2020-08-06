@@ -142,6 +142,57 @@ definitions:
       tableName:
         type: string
     type: object
+  model.Document:
+    properties:
+      browseNum:
+        type: integer
+      browseVirtualNum:
+        type: integer
+      collectionNum:
+        type: integer
+      content:
+        type: string
+      downloadNum:
+        type: integer
+      downloadVirtualNum:
+        type: integer
+      pdfFileUrl:
+        type: string
+      releasedAt:
+        type: string
+      revisedAt:
+        type: string
+      shareNum:
+        type: integer
+      title:
+        type: string
+      wordFileUrl:
+        type: string
+    type: object
+  model.DocumentCategory:
+    properties:
+      categoryLevel:
+        type: integer
+      parentId:
+        type: integer
+      sort:
+        type: integer
+      title:
+        type: string
+    type: object
+  model.DocumentKeyword:
+    properties:
+      documentNum:
+        type: integer
+      name:
+        type: string
+      searchNum:
+        type: integer
+      sort:
+        type: integer
+      status:
+        type: integer
+    type: object
   model.ExaCustomer:
     properties:
       customerName:
@@ -177,6 +228,8 @@ definitions:
         type: string
       dataTypeLong:
         type: string
+      dictType:
+        type: string
       fieldDesc:
         type: string
       fieldJson:
@@ -187,6 +240,17 @@ definitions:
         type: string
       fieldType:
         type: string
+    type: object
+  model.Label:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      status:
+        type: integer
+      userNum:
+        type: integer
     type: object
   model.SysApi:
     properties:
@@ -371,6 +435,82 @@ definitions:
         $ref: '#/definitions/config.Server'
         type: object
     type: object
+  model.UserBrowseRecord:
+    properties:
+      browsedAt:
+        type: string
+      doucmentId:
+        type: integer
+      repeatNum:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.UserDownloadRecord:
+    properties:
+      doucmentId:
+        type: integer
+      downloadedAt:
+        type: string
+      repeatNum:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.UserLabel:
+    properties:
+      labelId:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.UserSearchRecord:
+    properties:
+      keyword:
+        type: string
+      repeatNum:
+        type: integer
+      searchedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+  model.UserShareRecord:
+    properties:
+      doucmentId:
+        type: integer
+      sharedAt:
+        type: string
+      type:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.ZbUser:
+    properties:
+      browseNum:
+        type: integer
+      city:
+        type: string
+      district:
+        type: string
+      downloadNum:
+        type: integer
+      headerImg:
+        type: string
+      mobile:
+        type: string
+      nickName:
+        type: string
+      province:
+        type: string
+      registered_at:
+        type: string
+      status:
+        type: integer
+      uuid:
+        type: string
+    type: object
   request.AddMenuAuthorityInfo:
     properties:
       authorityId:
@@ -410,10 +550,95 @@ definitions:
       username:
         type: string
     type: object
+  request.DocumentCategorySearch:
+    properties:
+      categoryLevel:
+        type: integer
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      parentId:
+        type: integer
+      sort:
+        type: integer
+      title:
+        type: string
+    type: object
+  request.DocumentKeywordSearch:
+    properties:
+      documentNum:
+        type: integer
+      name:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      searchNum:
+        type: integer
+      sort:
+        type: integer
+      status:
+        type: integer
+    type: object
+  request.DocumentSearch:
+    properties:
+      browseNum:
+        type: integer
+      browseVirtualNum:
+        type: integer
+      collectionNum:
+        type: integer
+      content:
+        type: string
+      downloadNum:
+        type: integer
+      downloadVirtualNum:
+        type: integer
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      pdfFileUrl:
+        type: string
+      releasedAt:
+        type: string
+      revisedAt:
+        type: string
+      shareNum:
+        type: integer
+      title:
+        type: string
+      wordFileUrl:
+        type: string
+    type: object
   request.GetById:
     properties:
       id:
         type: number
+    type: object
+  request.IdsReq:
+    properties:
+      ids:
+        items:
+          type: integer
+        type: array
+    type: object
+  request.LabelSearch:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      status:
+        type: integer
+      userNum:
+        type: integer
     type: object
   request.PageInfo:
     properties:
@@ -525,6 +750,106 @@ definitions:
       user_id:
         type: integer
     type: object
+  request.UserBrowseRecordSearch:
+    properties:
+      browsedAt:
+        type: string
+      doucmentId:
+        type: integer
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      repeatNum:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  request.UserDownloadRecordSearch:
+    properties:
+      doucmentId:
+        type: integer
+      downloadedAt:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      repeatNum:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  request.UserLabelSearch:
+    properties:
+      labelId:
+        type: integer
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  request.UserSearchRecordSearch:
+    properties:
+      keyword:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      repeatNum:
+        type: integer
+      searchedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+  request.UserShareRecordSearch:
+    properties:
+      doucmentId:
+        type: integer
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      sharedAt:
+        type: string
+      type:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  request.ZbUserSearch:
+    properties:
+      browseNum:
+        type: integer
+      city:
+        type: string
+      district:
+        type: string
+      downloadNum:
+        type: integer
+      headerImg:
+        type: string
+      mobile:
+        type: string
+      nickName:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      province:
+        type: string
+      registered_at:
+        type: string
+      status:
+        type: integer
+      uuid:
+        type: string
+    type: object
   response.SysAuthorityCopyResponse:
     properties:
       authority:
@@ -551,7 +876,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysApi'
-          type: object
       produces:
       - application/json
       responses:
@@ -575,7 +899,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysApi'
-          type: object
       produces:
       - application/json
       responses:
@@ -615,7 +938,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.GetById'
-          type: object
       produces:
       - application/json
       responses:
@@ -639,7 +961,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.SearchApiParams'
-          type: object
       produces:
       - application/json
       responses:
@@ -663,7 +984,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysApi'
-          type: object
       produces:
       - application/json
       responses:
@@ -687,7 +1007,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/response.SysAuthorityCopyResponse'
-          type: object
       produces:
       - application/json
       responses:
@@ -711,7 +1030,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysAuthority'
-          type: object
       produces:
       - application/json
       responses:
@@ -735,7 +1053,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysAuthority'
-          type: object
       produces:
       - application/json
       responses:
@@ -759,7 +1076,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.PageInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -783,7 +1099,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysAuthority'
-          type: object
       produces:
       - application/json
       responses:
@@ -807,7 +1122,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysAuthority'
-          type: object
       produces:
       - application/json
       responses:
@@ -831,7 +1145,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.AutoCodeStruct'
-          type: object
       produces:
       - application/json
       responses:
@@ -885,7 +1198,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.RegisterAndLoginStruct'
-          type: object
       produces:
       - application/json
       responses:
@@ -905,7 +1217,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysUser'
-          type: object
       produces:
       - application/json
       responses:
@@ -916,6 +1227,144 @@ paths:
       summary: 用户注册账号
       tags:
       - Base
+  /browseRecord/createUserBrowseRecord:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建UserBrowseRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserBrowseRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建UserBrowseRecord
+      tags:
+      - UserBrowseRecord
+  /browseRecord/deleteUserBrowseRecord:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除UserBrowseRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserBrowseRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除UserBrowseRecord
+      tags:
+      - UserBrowseRecord
+  /browseRecord/deleteUserBrowseRecordByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除UserBrowseRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除UserBrowseRecord
+      tags:
+      - UserBrowseRecord
+  /browseRecord/findUserBrowseRecord:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询UserBrowseRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserBrowseRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询UserBrowseRecord
+      tags:
+      - UserBrowseRecord
+  /browseRecord/getUserBrowseRecordList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取UserBrowseRecord列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserBrowseRecordSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取UserBrowseRecord列表
+      tags:
+      - UserBrowseRecord
+  /browseRecord/updateUserBrowseRecord:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新UserBrowseRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserBrowseRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新UserBrowseRecord
+      tags:
+      - UserBrowseRecord
   /casbin/CasbinTest:
     get:
       consumes:
@@ -927,7 +1376,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.CasbinInReceive'
-          type: object
       produces:
       - application/json
       responses:
@@ -951,7 +1399,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.CasbinInReceive'
-          type: object
       produces:
       - application/json
       responses:
@@ -975,7 +1422,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.CasbinInReceive'
-          type: object
       produces:
       - application/json
       responses:
@@ -999,7 +1445,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.ExaCustomer'
-          type: object
       produces:
       - application/json
       responses:
@@ -1022,7 +1467,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.ExaCustomer'
-          type: object
       produces:
       - application/json
       responses:
@@ -1045,7 +1489,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.ExaCustomer'
-          type: object
       produces:
       - application/json
       responses:
@@ -1068,7 +1511,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.ExaCustomer'
-          type: object
       produces:
       - application/json
       responses:
@@ -1092,7 +1534,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.PageInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -1105,6 +1546,558 @@ paths:
       summary: 获取权限客户列表
       tags:
       - SysApi
+  /doc/createDocument:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Document
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Document'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Document
+      tags:
+      - Document
+  /doc/deleteDocument:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Document
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Document'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Document
+      tags:
+      - Document
+  /doc/deleteDocumentByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Document
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Document
+      tags:
+      - Document
+  /doc/findDocument:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Document
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Document'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Document
+      tags:
+      - Document
+  /doc/getDocumentList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Document列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.DocumentSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Document列表
+      tags:
+      - Document
+  /doc/updateDocument:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Document
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Document'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Document
+      tags:
+      - Document
+  /docCategory/createDocumentCategory:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建DocumentCategory
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建DocumentCategory
+      tags:
+      - DocumentCategory
+  /docCategory/deleteDocumentCategory:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除DocumentCategory
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除DocumentCategory
+      tags:
+      - DocumentCategory
+  /docCategory/deleteDocumentCategoryByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除DocumentCategory
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除DocumentCategory
+      tags:
+      - DocumentCategory
+  /docCategory/findDocumentCategory:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询DocumentCategory
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询DocumentCategory
+      tags:
+      - DocumentCategory
+  /docCategory/getDocumentCategoryList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取DocumentCategory列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.DocumentCategorySearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取DocumentCategory列表
+      tags:
+      - DocumentCategory
+  /docCategory/updateDocumentCategory:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新DocumentCategory
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新DocumentCategory
+      tags:
+      - DocumentCategory
+  /docKeyword/createDocumentKeyword:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建DocumentKeyword
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentKeyword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建DocumentKeyword
+      tags:
+      - DocumentKeyword
+  /docKeyword/deleteDocumentKeyword:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除DocumentKeyword
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentKeyword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除DocumentKeyword
+      tags:
+      - DocumentKeyword
+  /docKeyword/deleteDocumentKeywordByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除DocumentKeyword
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除DocumentKeyword
+      tags:
+      - DocumentKeyword
+  /docKeyword/findDocumentKeyword:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询DocumentKeyword
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentKeyword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询DocumentKeyword
+      tags:
+      - DocumentKeyword
+  /docKeyword/getDocumentKeywordList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取DocumentKeyword列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.DocumentKeywordSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取DocumentKeyword列表
+      tags:
+      - DocumentKeyword
+  /docKeyword/updateDocumentKeyword:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新DocumentKeyword
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DocumentKeyword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新DocumentKeyword
+      tags:
+      - DocumentKeyword
+  /downloadRecord/createUserDownloadRecord:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建UserDownloadRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserDownloadRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建UserDownloadRecord
+      tags:
+      - UserDownloadRecord
+  /downloadRecord/deleteUserDownloadRecord:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除UserDownloadRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserDownloadRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除UserDownloadRecord
+      tags:
+      - UserDownloadRecord
+  /downloadRecord/deleteUserDownloadRecordByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除UserDownloadRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除UserDownloadRecord
+      tags:
+      - UserDownloadRecord
+  /downloadRecord/findUserDownloadRecord:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询UserDownloadRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserDownloadRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询UserDownloadRecord
+      tags:
+      - UserDownloadRecord
+  /downloadRecord/getUserDownloadRecordList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取UserDownloadRecord列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserDownloadRecordSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取UserDownloadRecord列表
+      tags:
+      - UserDownloadRecord
+  /downloadRecord/updateUserDownloadRecord:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新UserDownloadRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserDownloadRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新UserDownloadRecord
+      tags:
+      - UserDownloadRecord
   /fileUploadAndDownload/breakpointContinue:
     post:
       consumes:
@@ -1136,7 +2129,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.ExaFileUploadAndDownload'
-          type: object
       produces:
       - application/json
       responses:
@@ -1182,7 +2174,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.PageInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -1255,6 +2246,144 @@ paths:
       summary: jwt加入黑名单
       tags:
       - jwt
+  /label/createLabel:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Label
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Label'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Label
+      tags:
+      - Label
+  /label/deleteLabel:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Label
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Label'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Label
+      tags:
+      - Label
+  /label/deleteLabelByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Label
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Label
+      tags:
+      - Label
+  /label/findLabel:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Label
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Label'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Label
+      tags:
+      - Label
+  /label/getLabelList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Label列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.LabelSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Label列表
+      tags:
+      - Label
+  /label/updateLabel:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Label
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Label'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Label
+      tags:
+      - Label
   /menu/GetMenuAuthority:
     post:
       consumes:
@@ -1266,7 +2395,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.AuthorityIdInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -1290,7 +2418,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysBaseMenu'
-          type: object
       produces:
       - application/json
       responses:
@@ -1314,7 +2441,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.AddMenuAuthorityInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -1338,7 +2464,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.GetById'
-          type: object
       produces:
       - application/json
       responses:
@@ -1362,7 +2487,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.GetById'
-          type: object
       produces:
       - application/json
       responses:
@@ -1384,7 +2508,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.RegisterAndLoginStruct'
-          type: object
       produces:
       - application/json
       responses:
@@ -1406,7 +2529,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.RegisterAndLoginStruct'
-          type: object
       produces:
       - application/json
       responses:
@@ -1430,7 +2552,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.PageInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -1454,7 +2575,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysBaseMenu'
-          type: object
       produces:
       - application/json
       responses:
@@ -1467,6 +2587,282 @@ paths:
       summary: 更新菜单
       tags:
       - menu
+  /searchRecord/createUserSearchRecord:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建UserSearchRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserSearchRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建UserSearchRecord
+      tags:
+      - UserSearchRecord
+  /searchRecord/deleteUserSearchRecord:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除UserSearchRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserSearchRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除UserSearchRecord
+      tags:
+      - UserSearchRecord
+  /searchRecord/deleteUserSearchRecordByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除UserSearchRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除UserSearchRecord
+      tags:
+      - UserSearchRecord
+  /searchRecord/findUserSearchRecord:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询UserSearchRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserSearchRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询UserSearchRecord
+      tags:
+      - UserSearchRecord
+  /searchRecord/getUserSearchRecordList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取UserSearchRecord列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserSearchRecordSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取UserSearchRecord列表
+      tags:
+      - UserSearchRecord
+  /searchRecord/updateUserSearchRecord:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新UserSearchRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserSearchRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新UserSearchRecord
+      tags:
+      - UserSearchRecord
+  /shareRecord/createUserShareRecord:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建UserShareRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserShareRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建UserShareRecord
+      tags:
+      - UserShareRecord
+  /shareRecord/deleteUserShareRecord:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除UserShareRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserShareRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除UserShareRecord
+      tags:
+      - UserShareRecord
+  /shareRecord/deleteUserShareRecordByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除UserShareRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除UserShareRecord
+      tags:
+      - UserShareRecord
+  /shareRecord/findUserShareRecord:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询UserShareRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserShareRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询UserShareRecord
+      tags:
+      - UserShareRecord
+  /shareRecord/getUserShareRecordList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取UserShareRecord列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserShareRecordSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取UserShareRecord列表
+      tags:
+      - UserShareRecord
+  /shareRecord/updateUserShareRecord:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新UserShareRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserShareRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新UserShareRecord
+      tags:
+      - UserShareRecord
   /sysDictionary/createSysDictionary:
     post:
       consumes:
@@ -1478,7 +2874,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionary'
-          type: object
       produces:
       - application/json
       responses:
@@ -1502,7 +2897,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionary'
-          type: object
       produces:
       - application/json
       responses:
@@ -1526,7 +2920,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionary'
-          type: object
       produces:
       - application/json
       responses:
@@ -1550,7 +2943,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.SysDictionarySearch'
-          type: object
       produces:
       - application/json
       responses:
@@ -1574,7 +2966,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionary'
-          type: object
       produces:
       - application/json
       responses:
@@ -1598,7 +2989,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionaryDetail'
-          type: object
       produces:
       - application/json
       responses:
@@ -1622,7 +3012,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionaryDetail'
-          type: object
       produces:
       - application/json
       responses:
@@ -1646,7 +3035,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionaryDetail'
-          type: object
       produces:
       - application/json
       responses:
@@ -1670,7 +3058,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.SysDictionaryDetailSearch'
-          type: object
       produces:
       - application/json
       responses:
@@ -1694,7 +3081,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysDictionaryDetail'
-          type: object
       produces:
       - application/json
       responses:
@@ -1718,7 +3104,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysOperationRecord'
-          type: object
       produces:
       - application/json
       responses:
@@ -1742,7 +3127,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysOperationRecord'
-          type: object
       produces:
       - application/json
       responses:
@@ -1753,6 +3137,29 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: 删除SysOperationRecord
+      tags:
+      - SysOperationRecord
+  /sysOperationRecord/deleteSysOperationRecordByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除SysOperationRecord
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除SysOperationRecord
       tags:
       - SysOperationRecord
   /sysOperationRecord/findSysOperationRecord:
@@ -1766,7 +3173,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysOperationRecord'
-          type: object
       produces:
       - application/json
       responses:
@@ -1790,7 +3196,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.SysOperationRecordSearch'
-          type: object
       produces:
       - application/json
       responses:
@@ -1814,7 +3219,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysOperationRecord'
-          type: object
       produces:
       - application/json
       responses:
@@ -1836,7 +3240,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.System'
-          type: object
       produces:
       - application/json
       responses:
@@ -1872,7 +3275,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.System'
-          type: object
       produces:
       - application/json
       responses:
@@ -1894,7 +3296,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.ChangePasswordStruct'
-          type: object
       produces:
       - application/json
       responses:
@@ -1918,7 +3319,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.GetById'
-          type: object
       produces:
       - application/json
       responses:
@@ -1942,7 +3342,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.PageInfo'
-          type: object
       produces:
       - application/json
       responses:
@@ -1966,7 +3365,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.SetUserAuth'
-          type: object
       produces:
       - application/json
       responses:
@@ -2006,6 +3404,144 @@ paths:
       summary: 用户上传头像
       tags:
       - SysUser
+  /userLabel/createUserLabel:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建UserLabel
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLabel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建UserLabel
+      tags:
+      - UserLabel
+  /userLabel/deleteUserLabel:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除UserLabel
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLabel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除UserLabel
+      tags:
+      - UserLabel
+  /userLabel/deleteUserLabelByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除UserLabel
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除UserLabel
+      tags:
+      - UserLabel
+  /userLabel/findUserLabel:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询UserLabel
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLabel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询UserLabel
+      tags:
+      - UserLabel
+  /userLabel/getUserLabelList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取UserLabel列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserLabelSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取UserLabel列表
+      tags:
+      - UserLabel
+  /userLabel/updateUserLabel:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新UserLabel
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLabel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新UserLabel
+      tags:
+      - UserLabel
   /workflow/createWorkFlow:
     post:
       parameters:
@@ -2015,7 +3551,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model.SysWorkflow'
-          type: object
       produces:
       - application/json
       responses:
@@ -2026,6 +3561,144 @@ paths:
       summary: 注册工作流
       tags:
       - workflow
+  /zbUser/createZbUser:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建ZbUser
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ZbUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建ZbUser
+      tags:
+      - ZbUser
+  /zbUser/deleteZbUser:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除ZbUser
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ZbUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除ZbUser
+      tags:
+      - ZbUser
+  /zbUser/deleteZbUserByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除ZbUser
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.IdsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除ZbUser
+      tags:
+      - ZbUser
+  /zbUser/findZbUser:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询ZbUser
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ZbUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询ZbUser
+      tags:
+      - ZbUser
+  /zbUser/getZbUserList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取ZbUser列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.ZbUserSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取ZbUser列表
+      tags:
+      - ZbUser
+  /zbUser/updateZbUser:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新ZbUser
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ZbUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新ZbUser
+      tags:
+      - ZbUser
 securityDefinitions:
   ApiKeyAuth:
     in: header

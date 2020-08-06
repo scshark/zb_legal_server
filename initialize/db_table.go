@@ -22,6 +22,17 @@ func DBTables() {
 		model.ExaFileChunk{},
 		model.ExaCustomer{},
 		model.SysOperationRecord{},
+		model.ZbUser{},
+		model.ZbLabel{},
+		model.ZbUserBrowseRecord{},
+		model.ZbUserDownloadRecord{},
+		model.ZbUserLabel{},
+		model.ZbUserSearchRecord{},
+		model.ZbUserShareRecord{},
+		model.ZbDocument{},
+		model.ZbDocumentCategory{},
+		model.ZbDocumentKeyword{},
 	)
+
 	global.GVA_LOG.Debug("register table success")
 }
