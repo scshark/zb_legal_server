@@ -38,6 +38,16 @@ func Routers() *gin.Engine {
 	router.InitSysDictionaryDetailRouter(ApiGroup)   // 字典详情管理
 	router.InitSysDictionaryRouter(ApiGroup)         // 字典管理
 	router.InitSysOperationRecordRouter(ApiGroup)    // 操作记录
+	router.InitZbUserRouter(ApiGroup)                // 注册政邦用户管理路由
+	router.InitLabelRouter(ApiGroup)                 // 注册政邦用户标签管理路由
+	router.InitUserBrowseRecordRouter(ApiGroup)      // 注册政邦用户浏览记录路由
+	router.InitUserDownloadRecordRouter(ApiGroup)    // 注册政邦用户下载记录路由
+	router.InitUserLabelRouter(ApiGroup)             // 注册政邦用户标签绑定记录路由
+	router.InitUserSearchRecordRouter(ApiGroup)      // 注册政邦用户搜素记录路由
+	router.InitUserShareRecordRouter(ApiGroup)       // 注册政邦用户分享记录路由
+	router.InitDocumentKeywordRouter(ApiGroup)       // 注册政邦文书关键词管理路由
+	router.InitDocumentCategoryRouter(ApiGroup)      // 注册政邦文书分类管理路由
+	router.InitDocumentRouter(ApiGroup)              // 注册政邦文书管理路由
 	global.GVA_LOG.Info("router register success")
 	return Router
 }
