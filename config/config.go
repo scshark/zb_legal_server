@@ -1,15 +1,15 @@
 package config
 
 type Server struct {
-	Mysql     Mysql     `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
-	Sqlite    Sqlite    `mapstructure:"sqlite" json:"sqlite" yaml:"sqlite"`
-	Qiniu     Qiniu     `mapstructure:"qiniu" json:"qiniu" yaml:"qiniu"`
-	Casbin    Casbin    `mapstructure:"casbin" json:"casbin" yaml:"casbin"`
-	Redis     Redis     `mapstructure:"redis" json:"redis" yaml:"redis"`
-	System    System    `mapstructure:"system" json:"system" yaml:"system"`
-	JWT       JWT       `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
-	Captcha   Captcha   `mapstructure:"captcha" json:"captcha" yaml:"captcha"`
-	Log       Log       `mapstructure:"log" json:"log" yaml:"log"`
+	Mysql   Mysql   `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
+	Sqlite  Sqlite  `mapstructure:"sqlite" json:"sqlite" yaml:"sqlite"`
+	Qiniu   Qiniu   `mapstructure:"qiniu" json:"qiniu" yaml:"qiniu"`
+	Casbin  Casbin  `mapstructure:"casbin" json:"casbin" yaml:"casbin"`
+	Redis   Redis   `mapstructure:"redis" json:"redis" yaml:"redis"`
+	System  System  `mapstructure:"system" json:"system" yaml:"system"`
+	JWT     JWT     `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
+	Captcha Captcha `mapstructure:"captcha" json:"captcha" yaml:"captcha"`
+	Log     Log     `mapstructure:"log" json:"log" yaml:"log"`
 }
 
 type System struct {
@@ -44,10 +44,12 @@ type Redis struct {
 	DB       int    `mapstructure:"db" json:"db" yaml:"db"`
 }
 type Qiniu struct {
-	AccessKey string `mapstructure:"access-key" json:"accessKey" yaml:"access-key"`
-	SecretKey string `mapstructure:"secret-key" json:"secretKey" yaml:"secret-key"`
-	Bucket    string `mapstructure:"bucket" json:"bucket" yaml:"bucket"`
-	ImgPath   string `mapstructure:"img-path" json:"imgPath" yaml:"img-path"`
+	AccessKey     string `mapstructure:"access-key" json:"accessKey" yaml:"access-key"`
+	SecretKey     string `mapstructure:"secret-key" json:"secretKey" yaml:"secret-key"`
+	Bucket        string `mapstructure:"bucket" json:"bucket" yaml:"bucket"`
+	ImgPath       string `mapstructure:"img-path" json:"imgPath" yaml:"img-path"`
+	UseHttps      bool   `mapstructure:"use-https" json:"useHttps" yaml:"use-https"`
+	UseCdnDomains bool   `mapstructure:"use-cdn-domains" json:"useCdnDomains" yaml:"use-cdn-domains"`
 }
 
 type Captcha struct {

@@ -19,11 +19,11 @@ func Upload(file *multipart.FileHeader) (err error, path string, key string) {
 	upToken := putPolicy.UploadToken(mac)
 	cfg := storage.Config{}
 	// 空间对应的机房
-	cfg.Zone = &storage.ZoneHuadong
+	cfg.Region,_ = storage.GetRegion(global.GVA_CONFIG.Qiniu.AccessKey, global.GVA_CONFIG.Qiniu.Bucket)
 	// 是否使用https域名
-	cfg.UseHTTPS = false
+	cfg.UseHTTPS = global.GVA_CONFIG.Qiniu.UseHttps
 	// 上传是否使用CDN上传加速
-	cfg.UseCdnDomains = false
+	cfg.UseCdnDomains = global.GVA_CONFIG.Qiniu.UseCdnDomains
 	formUploader := storage.NewFormUploader(&cfg)
 	ret := storage.PutRet{}
 	putExtra := storage.PutExtra{
