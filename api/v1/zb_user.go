@@ -8,6 +8,9 @@ import (
 	resp "gin-vue-admin/model/response"
 	"gin-vue-admin/service"
 	"github.com/gin-gonic/gin"
+	"github.com/satori/go.uuid"
+	"math/rand"
+	"time"
 )
 
 // @Tags ZbUser
@@ -19,8 +22,19 @@ import (
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /zbUser/createZbUser [post]
 func CreateZbUser(c *gin.Context) {
-	var zbUser model.ZbUser
-	_ = c.ShouldBindJSON(&zbUser)
+	// var zbUser model.ZbUser
+	zbUser := model.ZbUser{
+		UUID:         uuid.NewV4(),
+		NickName:     fmt.Sprintf("用户%d", rand.Intn(999999)),
+		Mobile:       fmt.Sprintf("17722%06v", rand.New(rand.NewSource(time.Now().UnixNano())).Int31n(1000000)),
+		HeaderImg:    "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83er359PXMfat0K8jwfKZgQNk71ticmeddnLWOtCxibqa6Bpibvia24I2yLZADqNCciacePBNWTzdCUOJJRg/132",
+		Province:     "广东",
+		City:         "广州",
+		District:     "天河",
+		Status:       1,
+		RegisteredAt: time.Now(),
+	}
+	// _ = c.ShouldBindJSON(&zbUser)
 	err := service.CreateZbUser(zbUser)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("创建失败，%v", err), c)
@@ -58,7 +72,7 @@ func DeleteZbUser(c *gin.Context) {
 // @Router /zbUser/deleteZbUserByIds [delete]
 func DeleteZbUserByIds(c *gin.Context) {
 	var IDS request.IdsReq
-    _ = c.ShouldBindJSON(&IDS)
+	_ = c.ShouldBindJSON(&IDS)
 	err := service.DeleteZbUserByIds(IDS)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("删除失败，%v", err), c)
