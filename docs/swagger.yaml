@@ -59,6 +59,10 @@ definitions:
         type: string
       secretKey:
         type: string
+      useCdnDomains:
+        type: boolean
+      useHttps:
+        type: boolean
     type: object
   config.Redis:
     properties:
@@ -142,57 +146,6 @@ definitions:
       tableName:
         type: string
     type: object
-  model.Document:
-    properties:
-      browseNum:
-        type: integer
-      browseVirtualNum:
-        type: integer
-      collectionNum:
-        type: integer
-      content:
-        type: string
-      downloadNum:
-        type: integer
-      downloadVirtualNum:
-        type: integer
-      pdfFileUrl:
-        type: string
-      releasedAt:
-        type: string
-      revisedAt:
-        type: string
-      shareNum:
-        type: integer
-      title:
-        type: string
-      wordFileUrl:
-        type: string
-    type: object
-  model.DocumentCategory:
-    properties:
-      categoryLevel:
-        type: integer
-      parentId:
-        type: integer
-      sort:
-        type: integer
-      title:
-        type: string
-    type: object
-  model.DocumentKeyword:
-    properties:
-      documentNum:
-        type: integer
-      name:
-        type: string
-      searchNum:
-        type: integer
-      sort:
-        type: integer
-      status:
-        type: integer
-    type: object
   model.ExaCustomer:
     properties:
       customerName:
@@ -240,17 +193,6 @@ definitions:
         type: string
       fieldType:
         type: string
-    type: object
-  model.Label:
-    properties:
-      description:
-        type: string
-      name:
-        type: string
-      status:
-        type: integer
-      userNum:
-        type: integer
     type: object
   model.SysApi:
     properties:
@@ -435,55 +377,70 @@ definitions:
         $ref: '#/definitions/config.Server'
         type: object
     type: object
-  model.UserBrowseRecord:
+  model.ZbDocument:
     properties:
-      browsedAt:
+      browseNum:
+        type: integer
+      browseVirtualNum:
+        type: integer
+      collectionNum:
+        type: integer
+      content:
         type: string
-      doucmentId:
+      downloadNum:
         type: integer
-      repeatNum:
+      downloadVirtualNum:
         type: integer
-      userId:
+      pdfFileUrl:
+        type: string
+      releasedAt:
+        type: string
+      revisedAt:
+        type: string
+      shareNum:
+        type: integer
+      title:
+        type: string
+      wordFileUrl:
+        type: string
+    type: object
+  model.ZbDocumentCategory:
+    properties:
+      children:
+        items:
+          $ref: '#/definitions/model.ZbDocumentCategory'
+        type: array
+      hidden:
+        type: integer
+      parentId:
+        type: integer
+      sort:
+        type: integer
+      title:
+        type: string
+    type: object
+  model.ZbDocumentKeyword:
+    properties:
+      documentNum:
+        type: integer
+      name:
+        type: string
+      searchNum:
+        type: integer
+      sort:
+        type: integer
+      status:
         type: integer
     type: object
-  model.UserDownloadRecord:
+  model.ZbLabel:
     properties:
-      doucmentId:
-        type: integer
-      downloadedAt:
+      description:
         type: string
-      repeatNum:
-        type: integer
-      userId:
-        type: integer
-    type: object
-  model.UserLabel:
-    properties:
-      labelId:
-        type: integer
-      userId:
-        type: integer
-    type: object
-  model.UserSearchRecord:
-    properties:
-      keyword:
+      name:
         type: string
-      repeatNum:
+      status:
         type: integer
-      searchedAt:
-        type: string
-      userId:
-        type: integer
-    type: object
-  model.UserShareRecord:
-    properties:
-      doucmentId:
-        type: integer
-      sharedAt:
-        type: string
-      type:
-        type: integer
-      userId:
+      userNum:
         type: integer
     type: object
   model.ZbUser:
@@ -510,6 +467,57 @@ definitions:
         type: integer
       uuid:
         type: string
+    type: object
+  model.ZbUserBrowseRecord:
+    properties:
+      browsedAt:
+        type: string
+      doucmentId:
+        type: integer
+      repeatNum:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.ZbUserDownloadRecord:
+    properties:
+      doucmentId:
+        type: integer
+      downloadedAt:
+        type: string
+      repeatNum:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.ZbUserLabel:
+    properties:
+      labelId:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  model.ZbUserSearchRecord:
+    properties:
+      keyword:
+        type: string
+      repeatNum:
+        type: integer
+      searchedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+  model.ZbUserShareRecord:
+    properties:
+      doucmentId:
+        type: integer
+      sharedAt:
+        type: string
+      type:
+        type: integer
+      userId:
+        type: integer
     type: object
   request.AddMenuAuthorityInfo:
     properties:
@@ -552,7 +560,11 @@ definitions:
     type: object
   request.DocumentCategorySearch:
     properties:
-      categoryLevel:
+      children:
+        items:
+          $ref: '#/definitions/model.ZbDocumentCategory'
+        type: array
+      hidden:
         type: integer
       page:
         type: integer
@@ -1237,7 +1249,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserBrowseRecord'
+          $ref: '#/definitions/model.ZbUserBrowseRecord'
       produces:
       - application/json
       responses:
@@ -1249,7 +1261,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建UserBrowseRecord
       tags:
-      - UserBrowseRecord
+      - ZbUserBrowseRecord
   /browseRecord/deleteUserBrowseRecord:
     delete:
       consumes:
@@ -1260,7 +1272,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserBrowseRecord'
+          $ref: '#/definitions/model.ZbUserBrowseRecord'
       produces:
       - application/json
       responses:
@@ -1272,7 +1284,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除UserBrowseRecord
       tags:
-      - UserBrowseRecord
+      - ZbUserBrowseRecord
   /browseRecord/deleteUserBrowseRecordByIds:
     delete:
       consumes:
@@ -1295,7 +1307,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除UserBrowseRecord
       tags:
-      - UserBrowseRecord
+      - ZbUserBrowseRecord
   /browseRecord/findUserBrowseRecord:
     get:
       consumes:
@@ -1306,7 +1318,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserBrowseRecord'
+          $ref: '#/definitions/model.ZbUserBrowseRecord'
       produces:
       - application/json
       responses:
@@ -1318,7 +1330,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询UserBrowseRecord
       tags:
-      - UserBrowseRecord
+      - ZbUserBrowseRecord
   /browseRecord/getUserBrowseRecordList:
     get:
       consumes:
@@ -1341,7 +1353,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取UserBrowseRecord列表
       tags:
-      - UserBrowseRecord
+      - ZbUserBrowseRecord
   /browseRecord/updateUserBrowseRecord:
     put:
       consumes:
@@ -1352,7 +1364,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserBrowseRecord'
+          $ref: '#/definitions/model.ZbUserBrowseRecord'
       produces:
       - application/json
       responses:
@@ -1364,7 +1376,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新UserBrowseRecord
       tags:
-      - UserBrowseRecord
+      - ZbUserBrowseRecord
   /casbin/CasbinTest:
     get:
       consumes:
@@ -1556,7 +1568,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Document'
+          $ref: '#/definitions/model.ZbDocument'
       produces:
       - application/json
       responses:
@@ -1568,7 +1580,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建Document
       tags:
-      - Document
+      - ZbDocument
   /doc/deleteDocument:
     delete:
       consumes:
@@ -1579,7 +1591,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Document'
+          $ref: '#/definitions/model.ZbDocument'
       produces:
       - application/json
       responses:
@@ -1591,7 +1603,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除Document
       tags:
-      - Document
+      - ZbDocument
   /doc/deleteDocumentByIds:
     delete:
       consumes:
@@ -1614,7 +1626,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除Document
       tags:
-      - Document
+      - ZbDocument
   /doc/findDocument:
     get:
       consumes:
@@ -1625,7 +1637,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Document'
+          $ref: '#/definitions/model.ZbDocument'
       produces:
       - application/json
       responses:
@@ -1637,7 +1649,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询Document
       tags:
-      - Document
+      - ZbDocument
   /doc/getDocumentList:
     get:
       consumes:
@@ -1660,7 +1672,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取Document列表
       tags:
-      - Document
+      - ZbDocument
   /doc/updateDocument:
     put:
       consumes:
@@ -1671,7 +1683,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Document'
+          $ref: '#/definitions/model.ZbDocument'
       produces:
       - application/json
       responses:
@@ -1683,7 +1695,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新Document
       tags:
-      - Document
+      - ZbDocument
   /docCategory/createDocumentCategory:
     post:
       consumes:
@@ -1694,7 +1706,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentCategory'
+          $ref: '#/definitions/model.ZbDocumentCategory'
       produces:
       - application/json
       responses:
@@ -1706,7 +1718,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建DocumentCategory
       tags:
-      - DocumentCategory
+      - ZbDocumentCategory
   /docCategory/deleteDocumentCategory:
     delete:
       consumes:
@@ -1717,7 +1729,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentCategory'
+          $ref: '#/definitions/model.ZbDocumentCategory'
       produces:
       - application/json
       responses:
@@ -1729,7 +1741,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除DocumentCategory
       tags:
-      - DocumentCategory
+      - ZbDocumentCategory
   /docCategory/deleteDocumentCategoryByIds:
     delete:
       consumes:
@@ -1752,7 +1764,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除DocumentCategory
       tags:
-      - DocumentCategory
+      - ZbDocumentCategory
   /docCategory/findDocumentCategory:
     get:
       consumes:
@@ -1763,7 +1775,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentCategory'
+          $ref: '#/definitions/model.ZbDocumentCategory'
       produces:
       - application/json
       responses:
@@ -1775,7 +1787,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询DocumentCategory
       tags:
-      - DocumentCategory
+      - ZbDocumentCategory
   /docCategory/getDocumentCategoryList:
     get:
       consumes:
@@ -1798,7 +1810,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取DocumentCategory列表
       tags:
-      - DocumentCategory
+      - ZbDocumentCategory
   /docCategory/updateDocumentCategory:
     put:
       consumes:
@@ -1809,7 +1821,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentCategory'
+          $ref: '#/definitions/model.ZbDocumentCategory'
       produces:
       - application/json
       responses:
@@ -1821,7 +1833,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新DocumentCategory
       tags:
-      - DocumentCategory
+      - ZbDocumentCategory
   /docKeyword/createDocumentKeyword:
     post:
       consumes:
@@ -1832,7 +1844,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentKeyword'
+          $ref: '#/definitions/model.ZbDocumentKeyword'
       produces:
       - application/json
       responses:
@@ -1844,7 +1856,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建DocumentKeyword
       tags:
-      - DocumentKeyword
+      - ZbDocumentKeyword
   /docKeyword/deleteDocumentKeyword:
     delete:
       consumes:
@@ -1855,7 +1867,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentKeyword'
+          $ref: '#/definitions/model.ZbDocumentKeyword'
       produces:
       - application/json
       responses:
@@ -1867,7 +1879,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除DocumentKeyword
       tags:
-      - DocumentKeyword
+      - ZbDocumentKeyword
   /docKeyword/deleteDocumentKeywordByIds:
     delete:
       consumes:
@@ -1890,7 +1902,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除DocumentKeyword
       tags:
-      - DocumentKeyword
+      - ZbDocumentKeyword
   /docKeyword/findDocumentKeyword:
     get:
       consumes:
@@ -1901,7 +1913,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentKeyword'
+          $ref: '#/definitions/model.ZbDocumentKeyword'
       produces:
       - application/json
       responses:
@@ -1913,7 +1925,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询DocumentKeyword
       tags:
-      - DocumentKeyword
+      - ZbDocumentKeyword
   /docKeyword/getDocumentKeywordList:
     get:
       consumes:
@@ -1936,7 +1948,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取DocumentKeyword列表
       tags:
-      - DocumentKeyword
+      - ZbDocumentKeyword
   /docKeyword/updateDocumentKeyword:
     put:
       consumes:
@@ -1947,7 +1959,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.DocumentKeyword'
+          $ref: '#/definitions/model.ZbDocumentKeyword'
       produces:
       - application/json
       responses:
@@ -1959,7 +1971,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新DocumentKeyword
       tags:
-      - DocumentKeyword
+      - ZbDocumentKeyword
   /downloadRecord/createUserDownloadRecord:
     post:
       consumes:
@@ -1970,7 +1982,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserDownloadRecord'
+          $ref: '#/definitions/model.ZbUserDownloadRecord'
       produces:
       - application/json
       responses:
@@ -1982,7 +1994,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建UserDownloadRecord
       tags:
-      - UserDownloadRecord
+      - ZbUserDownloadRecord
   /downloadRecord/deleteUserDownloadRecord:
     delete:
       consumes:
@@ -1993,7 +2005,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserDownloadRecord'
+          $ref: '#/definitions/model.ZbUserDownloadRecord'
       produces:
       - application/json
       responses:
@@ -2005,7 +2017,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除UserDownloadRecord
       tags:
-      - UserDownloadRecord
+      - ZbUserDownloadRecord
   /downloadRecord/deleteUserDownloadRecordByIds:
     delete:
       consumes:
@@ -2028,7 +2040,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除UserDownloadRecord
       tags:
-      - UserDownloadRecord
+      - ZbUserDownloadRecord
   /downloadRecord/findUserDownloadRecord:
     get:
       consumes:
@@ -2039,7 +2051,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserDownloadRecord'
+          $ref: '#/definitions/model.ZbUserDownloadRecord'
       produces:
       - application/json
       responses:
@@ -2051,7 +2063,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询UserDownloadRecord
       tags:
-      - UserDownloadRecord
+      - ZbUserDownloadRecord
   /downloadRecord/getUserDownloadRecordList:
     get:
       consumes:
@@ -2074,7 +2086,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取UserDownloadRecord列表
       tags:
-      - UserDownloadRecord
+      - ZbUserDownloadRecord
   /downloadRecord/updateUserDownloadRecord:
     put:
       consumes:
@@ -2085,7 +2097,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserDownloadRecord'
+          $ref: '#/definitions/model.ZbUserDownloadRecord'
       produces:
       - application/json
       responses:
@@ -2097,7 +2109,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新UserDownloadRecord
       tags:
-      - UserDownloadRecord
+      - ZbUserDownloadRecord
   /fileUploadAndDownload/breakpointContinue:
     post:
       consumes:
@@ -2256,7 +2268,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Label'
+          $ref: '#/definitions/model.ZbLabel'
       produces:
       - application/json
       responses:
@@ -2268,7 +2280,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建Label
       tags:
-      - Label
+      - ZbLabel
   /label/deleteLabel:
     delete:
       consumes:
@@ -2279,7 +2291,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Label'
+          $ref: '#/definitions/model.ZbLabel'
       produces:
       - application/json
       responses:
@@ -2291,7 +2303,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除Label
       tags:
-      - Label
+      - ZbLabel
   /label/deleteLabelByIds:
     delete:
       consumes:
@@ -2314,7 +2326,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除Label
       tags:
-      - Label
+      - ZbLabel
   /label/findLabel:
     get:
       consumes:
@@ -2325,7 +2337,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Label'
+          $ref: '#/definitions/model.ZbLabel'
       produces:
       - application/json
       responses:
@@ -2337,7 +2349,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询Label
       tags:
-      - Label
+      - ZbLabel
   /label/getLabelList:
     get:
       consumes:
@@ -2360,7 +2372,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取Label列表
       tags:
-      - Label
+      - ZbLabel
   /label/updateLabel:
     put:
       consumes:
@@ -2371,7 +2383,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.Label'
+          $ref: '#/definitions/model.ZbLabel'
       produces:
       - application/json
       responses:
@@ -2383,7 +2395,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新Label
       tags:
-      - Label
+      - ZbLabel
   /menu/GetMenuAuthority:
     post:
       consumes:
@@ -2597,7 +2609,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserSearchRecord'
+          $ref: '#/definitions/model.ZbUserSearchRecord'
       produces:
       - application/json
       responses:
@@ -2609,7 +2621,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建UserSearchRecord
       tags:
-      - UserSearchRecord
+      - ZbUserSearchRecord
   /searchRecord/deleteUserSearchRecord:
     delete:
       consumes:
@@ -2620,7 +2632,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserSearchRecord'
+          $ref: '#/definitions/model.ZbUserSearchRecord'
       produces:
       - application/json
       responses:
@@ -2632,7 +2644,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除UserSearchRecord
       tags:
-      - UserSearchRecord
+      - ZbUserSearchRecord
   /searchRecord/deleteUserSearchRecordByIds:
     delete:
       consumes:
@@ -2655,7 +2667,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除UserSearchRecord
       tags:
-      - UserSearchRecord
+      - ZbUserSearchRecord
   /searchRecord/findUserSearchRecord:
     get:
       consumes:
@@ -2666,7 +2678,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserSearchRecord'
+          $ref: '#/definitions/model.ZbUserSearchRecord'
       produces:
       - application/json
       responses:
@@ -2678,7 +2690,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询UserSearchRecord
       tags:
-      - UserSearchRecord
+      - ZbUserSearchRecord
   /searchRecord/getUserSearchRecordList:
     get:
       consumes:
@@ -2701,7 +2713,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取UserSearchRecord列表
       tags:
-      - UserSearchRecord
+      - ZbUserSearchRecord
   /searchRecord/updateUserSearchRecord:
     put:
       consumes:
@@ -2712,7 +2724,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserSearchRecord'
+          $ref: '#/definitions/model.ZbUserSearchRecord'
       produces:
       - application/json
       responses:
@@ -2724,7 +2736,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新UserSearchRecord
       tags:
-      - UserSearchRecord
+      - ZbUserSearchRecord
   /shareRecord/createUserShareRecord:
     post:
       consumes:
@@ -2735,7 +2747,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserShareRecord'
+          $ref: '#/definitions/model.ZbUserShareRecord'
       produces:
       - application/json
       responses:
@@ -2747,7 +2759,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建UserShareRecord
       tags:
-      - UserShareRecord
+      - ZbUserShareRecord
   /shareRecord/deleteUserShareRecord:
     delete:
       consumes:
@@ -2758,7 +2770,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserShareRecord'
+          $ref: '#/definitions/model.ZbUserShareRecord'
       produces:
       - application/json
       responses:
@@ -2770,7 +2782,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除UserShareRecord
       tags:
-      - UserShareRecord
+      - ZbUserShareRecord
   /shareRecord/deleteUserShareRecordByIds:
     delete:
       consumes:
@@ -2793,7 +2805,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除UserShareRecord
       tags:
-      - UserShareRecord
+      - ZbUserShareRecord
   /shareRecord/findUserShareRecord:
     get:
       consumes:
@@ -2804,7 +2816,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserShareRecord'
+          $ref: '#/definitions/model.ZbUserShareRecord'
       produces:
       - application/json
       responses:
@@ -2816,7 +2828,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询UserShareRecord
       tags:
-      - UserShareRecord
+      - ZbUserShareRecord
   /shareRecord/getUserShareRecordList:
     get:
       consumes:
@@ -2839,7 +2851,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取UserShareRecord列表
       tags:
-      - UserShareRecord
+      - ZbUserShareRecord
   /shareRecord/updateUserShareRecord:
     put:
       consumes:
@@ -2850,7 +2862,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserShareRecord'
+          $ref: '#/definitions/model.ZbUserShareRecord'
       produces:
       - application/json
       responses:
@@ -2862,7 +2874,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新UserShareRecord
       tags:
-      - UserShareRecord
+      - ZbUserShareRecord
   /sysDictionary/createSysDictionary:
     post:
       consumes:
@@ -3414,7 +3426,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserLabel'
+          $ref: '#/definitions/model.ZbUserLabel'
       produces:
       - application/json
       responses:
@@ -3426,7 +3438,7 @@ paths:
       - ApiKeyAuth: []
       summary: 创建UserLabel
       tags:
-      - UserLabel
+      - ZbUserLabel
   /userLabel/deleteUserLabel:
     delete:
       consumes:
@@ -3437,7 +3449,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserLabel'
+          $ref: '#/definitions/model.ZbUserLabel'
       produces:
       - application/json
       responses:
@@ -3449,7 +3461,7 @@ paths:
       - ApiKeyAuth: []
       summary: 删除UserLabel
       tags:
-      - UserLabel
+      - ZbUserLabel
   /userLabel/deleteUserLabelByIds:
     delete:
       consumes:
@@ -3472,7 +3484,7 @@ paths:
       - ApiKeyAuth: []
       summary: 批量删除UserLabel
       tags:
-      - UserLabel
+      - ZbUserLabel
   /userLabel/findUserLabel:
     get:
       consumes:
@@ -3483,7 +3495,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserLabel'
+          $ref: '#/definitions/model.ZbUserLabel'
       produces:
       - application/json
       responses:
@@ -3495,7 +3507,7 @@ paths:
       - ApiKeyAuth: []
       summary: 用id查询UserLabel
       tags:
-      - UserLabel
+      - ZbUserLabel
   /userLabel/getUserLabelList:
     get:
       consumes:
@@ -3518,7 +3530,7 @@ paths:
       - ApiKeyAuth: []
       summary: 分页获取UserLabel列表
       tags:
-      - UserLabel
+      - ZbUserLabel
   /userLabel/updateUserLabel:
     put:
       consumes:
@@ -3529,7 +3541,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/model.UserLabel'
+          $ref: '#/definitions/model.ZbUserLabel'
       produces:
       - application/json
       responses:
@@ -3541,7 +3553,7 @@ paths:
       - ApiKeyAuth: []
       summary: 更新UserLabel
       tags:
-      - UserLabel
+      - ZbUserLabel
   /workflow/createWorkFlow:
     post:
       parameters:

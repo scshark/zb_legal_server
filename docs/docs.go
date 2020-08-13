@@ -4796,6 +4796,12 @@ var doc = `{
                 },
                 "secretKey": {
                     "type": "string"
+                },
+                "useCdnDomains": {
+                    "type": "boolean"
+                },
+                "useHttps": {
+                    "type": "boolean"
                 }
             }
         },
@@ -4920,84 +4926,6 @@ var doc = `{
                 }
             }
         },
-        "model.ZbDocument": {
-            "type": "object",
-            "properties": {
-                "browseNum": {
-                    "type": "integer"
-                },
-                "browseVirtualNum": {
-                    "type": "integer"
-                },
-                "collectionNum": {
-                    "type": "integer"
-                },
-                "content": {
-                    "type": "string"
-                },
-                "downloadNum": {
-                    "type": "integer"
-                },
-                "downloadVirtualNum": {
-                    "type": "integer"
-                },
-                "pdfFileUrl": {
-                    "type": "string"
-                },
-                "releasedAt": {
-                    "type": "string"
-                },
-                "revisedAt": {
-                    "type": "string"
-                },
-                "shareNum": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "wordFileUrl": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.ZbDocumentCategory": {
-            "type": "object",
-            "properties": {
-                "categoryLevel": {
-                    "type": "integer"
-                },
-                "parentId": {
-                    "type": "integer"
-                },
-                "sort": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.ZbDocumentKeyword": {
-            "type": "object",
-            "properties": {
-                "documentNum": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "searchNum": {
-                    "type": "integer"
-                },
-                "sort": {
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "integer"
-                }
-            }
-        },
         "model.ExaCustomer": {
             "type": "object",
             "properties": {
@@ -5068,23 +4996,6 @@ var doc = `{
                 },
                 "fieldType": {
                     "type": "string"
-                }
-            }
-        },
-        "model.ZbLabel": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "userNum": {
-                    "type": "integer"
                 }
             }
         },
@@ -5361,6 +5272,145 @@ var doc = `{
                 }
             }
         },
+        "model.ZbDocument": {
+            "type": "object",
+            "properties": {
+                "browseNum": {
+                    "type": "integer"
+                },
+                "browseVirtualNum": {
+                    "type": "integer"
+                },
+                "collectionNum": {
+                    "type": "integer"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "downloadNum": {
+                    "type": "integer"
+                },
+                "downloadVirtualNum": {
+                    "type": "integer"
+                },
+                "pdfFileUrl": {
+                    "type": "string"
+                },
+                "releasedAt": {
+                    "type": "string"
+                },
+                "revisedAt": {
+                    "type": "string"
+                },
+                "shareNum": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "wordFileUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.ZbDocumentCategory": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ZbDocumentCategory"
+                    }
+                },
+                "hidden": {
+                    "type": "integer"
+                },
+                "parentId": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.ZbDocumentKeyword": {
+            "type": "object",
+            "properties": {
+                "documentNum": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "searchNum": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ZbLabel": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "userNum": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ZbUser": {
+            "type": "object",
+            "properties": {
+                "browseNum": {
+                    "type": "integer"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "downloadNum": {
+                    "type": "integer"
+                },
+                "headerImg": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "nickName": {
+                    "type": "string"
+                },
+                "province": {
+                    "type": "string"
+                },
+                "registered_at": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
         "model.ZbUserBrowseRecord": {
             "type": "object",
             "properties": {
@@ -5440,44 +5490,6 @@ var doc = `{
                 }
             }
         },
-        "model.ZbUser": {
-            "type": "object",
-            "properties": {
-                "browseNum": {
-                    "type": "integer"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "district": {
-                    "type": "string"
-                },
-                "downloadNum": {
-                    "type": "integer"
-                },
-                "headerImg": {
-                    "type": "string"
-                },
-                "mobile": {
-                    "type": "string"
-                },
-                "nickName": {
-                    "type": "string"
-                },
-                "province": {
-                    "type": "string"
-                },
-                "registered_at": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "uuid": {
-                    "type": "string"
-                }
-            }
-        },
         "request.AddMenuAuthorityInfo": {
             "type": "object",
             "properties": {
@@ -5542,7 +5554,13 @@ var doc = `{
         "request.DocumentCategorySearch": {
             "type": "object",
             "properties": {
-                "categoryLevel": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ZbDocumentCategory"
+                    }
+                },
+                "hidden": {
                     "type": "integer"
                 },
                 "page": {

@@ -4,6 +4,8 @@ import (
 	"gin-vue-admin/global"
 	"gin-vue-admin/model"
 	"gin-vue-admin/model/request"
+	"github.com/pkg/errors"
+	"strconv"
 )
 
 // @title    CreateDocumentCategory
@@ -13,6 +15,22 @@ import (
 // @return    err             error
 
 func CreateDocumentCategory(docCategory model.ZbDocumentCategory) (err error) {
+
+	var parentCategory model.ZbDocumentCategory
+	if docCategory.ParentId != 0 {
+		err := global.GVA_DB.Where("id = ?", docCategory.ParentId).First(&parentCategory).Error
+		if err != nil {
+			return errors.New("上级分类不存在")
+		}
+		docCategory.CategoryLevel = parentCategory.CategoryLevel + 1
+		// 顶级分类ID
+		if parentCategory.ParentId == 0 {
+			docCategory.TopParentId = int(parentCategory.ID)
+		} else {
+			docCategory.TopParentId = parentCategory.TopParentId
+		}
+
+	}
 	err = global.GVA_DB.Create(&docCategory).Error
 	return err
 }
@@ -23,8 +41,9 @@ func CreateDocumentCategory(docCategory model.ZbDocumentCategory) (err error) {
 // @param     docCategory               model.ZbDocumentCategory
 // @return                    error
 
-func DeleteDocumentCategory(docCategory model.ZbDocumentCategory) (err error) {
-	err = global.GVA_DB.Delete(docCategory).Error
+func DeleteDocumentCategory(id uint) (err error) {
+	var docCategory model.ZbDocumentCategory
+	err = global.GVA_DB.Where("id = ?",id).Delete(&docCategory).Error
 	return err
 }
 
@@ -35,7 +54,7 @@ func DeleteDocumentCategory(docCategory model.ZbDocumentCategory) (err error) {
 // @return                    error
 
 func DeleteDocumentCategoryByIds(ids request.IdsReq) (err error) {
-	err = global.GVA_DB.Delete(&[]model.ZbDocumentCategory{},"id in (?)",ids.Ids).Error
+	err = global.GVA_DB.Delete(&[]model.ZbDocumentCategory{}, "id in (?)", ids.Ids).Error
 	return err
 }
 
@@ -46,7 +65,17 @@ func DeleteDocumentCategoryByIds(ids request.IdsReq) (err error) {
 // @return                    error
 
 func UpdateDocumentCategory(docCategory *model.ZbDocumentCategory) (err error) {
-	err = global.GVA_DB.Save(docCategory).Error
+
+	db := global.GVA_DB.Where("id = ?", docCategory.ID).Find(&model.ZbDocumentCategory{})
+
+	updateCategory := make(map[string]interface{})
+	updateCategory["title"] = docCategory.Title
+	updateCategory["sort"] = docCategory.Sort
+	updateCategory["hidden"] = docCategory.Hidden
+
+	err = db.Update(updateCategory).Error
+
+	global.GVA_LOG.Debug("文书分类修改err:%v", err)
 	return err
 }
 
@@ -71,11 +100,53 @@ func GetDocumentCategory(id uint) (err error, docCategory model.ZbDocumentCatego
 func GetDocumentCategoryInfoList(info request.DocumentCategorySearch) (err error, list interface{}, total int) {
 	limit := info.PageSize
 	offset := info.PageSize * (info.Page - 1)
-    // 创建db
-	db := global.GVA_DB.Model(&model.ZbDocumentCategory{})
-    var docCategorys []model.ZbDocumentCategory
-    // 如果有条件搜索 下方会自动创建搜索语句
+	// 创建db
+	db := global.GVA_DB.Model(&model.ZbDocumentCategory{}).Where("parent_id = ?", 0)
+	// 搜索条件
+	if info.ZbDocumentCategory.Title != "" {
+		db.Where("title = ?", info.ZbDocumentCategory.Title)
+	}
+	var docCategories []model.ZbDocumentCategory
+	// 如果有条件搜索 下方会自动创建搜索语句
 	err = db.Count(&total).Error
-	err = db.Limit(limit).Offset(offset).Find(&docCategorys).Error
-	return err, docCategorys, total
+	err = db.Limit(limit).Offset(offset).Order("id DESC").Find(&docCategories).Error
+
+	docAllCategories, err := getAllChildrenCategory(docCategories)
+
+	return err, docAllCategories, total
+}
+
+func getAllChildrenCategory(c []model.ZbDocumentCategory) ([]model.ZbDocumentCategory, error) {
+
+	var err error
+	var topParentId []string
+	for _, v := range c {
+		topParentId = append(topParentId, strconv.Itoa(int(v.ID)))
+	}
+	var docChildrenCategories []model.ZbDocumentCategory
+
+	err = global.GVA_DB.Where("top_parent_id in (?)", topParentId).Find(&docChildrenCategories).Error
+
+	categoryTree := make(map[int][]model.ZbDocumentCategory)
+	categoryTree[0] = c
+	for _, v := range docChildrenCategories {
+		categoryTree[v.ParentId] = append(categoryTree[v.ParentId], v)
+	}
+
+	for i := 0; i < len(c); i++ {
+		err = getAllCategoryList(&c[i], categoryTree)
+	}
+
+	return c, err
+}
+
+//
+func getAllCategoryList(category *model.ZbDocumentCategory, categoryTree map[int][]model.ZbDocumentCategory) (err error) {
+
+	category.Children = categoryTree[int(category.ID)]
+
+	for i := 0; i < len(category.Children); i++ {
+		err = getAllCategoryList(&category.Children[i], categoryTree)
+	}
+	return err
 }

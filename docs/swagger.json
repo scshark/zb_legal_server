@@ -620,7 +620,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserBrowseRecord"
+                    "ZbUserBrowseRecord"
                 ],
                 "summary": "创建UserBrowseRecord",
                 "parameters": [
@@ -630,7 +630,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserBrowseRecord"
+                            "$ref": "#/definitions/model.ZbUserBrowseRecord"
                         }
                     }
                 ],
@@ -658,7 +658,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserBrowseRecord"
+                    "ZbUserBrowseRecord"
                 ],
                 "summary": "删除UserBrowseRecord",
                 "parameters": [
@@ -668,7 +668,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserBrowseRecord"
+                            "$ref": "#/definitions/model.ZbUserBrowseRecord"
                         }
                     }
                 ],
@@ -696,7 +696,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserBrowseRecord"
+                    "ZbUserBrowseRecord"
                 ],
                 "summary": "批量删除UserBrowseRecord",
                 "parameters": [
@@ -734,7 +734,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserBrowseRecord"
+                    "ZbUserBrowseRecord"
                 ],
                 "summary": "用id查询UserBrowseRecord",
                 "parameters": [
@@ -744,7 +744,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserBrowseRecord"
+                            "$ref": "#/definitions/model.ZbUserBrowseRecord"
                         }
                     }
                 ],
@@ -772,7 +772,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserBrowseRecord"
+                    "ZbUserBrowseRecord"
                 ],
                 "summary": "分页获取UserBrowseRecord列表",
                 "parameters": [
@@ -810,7 +810,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserBrowseRecord"
+                    "ZbUserBrowseRecord"
                 ],
                 "summary": "更新UserBrowseRecord",
                 "parameters": [
@@ -820,7 +820,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserBrowseRecord"
+                            "$ref": "#/definitions/model.ZbUserBrowseRecord"
                         }
                     }
                 ],
@@ -1146,7 +1146,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Document"
+                    "ZbDocument"
                 ],
                 "summary": "创建Document",
                 "parameters": [
@@ -1156,7 +1156,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Document"
+                            "$ref": "#/definitions/model.ZbDocument"
                         }
                     }
                 ],
@@ -1184,7 +1184,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Document"
+                    "ZbDocument"
                 ],
                 "summary": "删除Document",
                 "parameters": [
@@ -1194,7 +1194,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Document"
+                            "$ref": "#/definitions/model.ZbDocument"
                         }
                     }
                 ],
@@ -1222,7 +1222,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Document"
+                    "ZbDocument"
                 ],
                 "summary": "批量删除Document",
                 "parameters": [
@@ -1260,7 +1260,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Document"
+                    "ZbDocument"
                 ],
                 "summary": "用id查询Document",
                 "parameters": [
@@ -1270,7 +1270,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Document"
+                            "$ref": "#/definitions/model.ZbDocument"
                         }
                     }
                 ],
@@ -1298,7 +1298,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Document"
+                    "ZbDocument"
                 ],
                 "summary": "分页获取Document列表",
                 "parameters": [
@@ -1336,7 +1336,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Document"
+                    "ZbDocument"
                 ],
                 "summary": "更新Document",
                 "parameters": [
@@ -1346,7 +1346,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Document"
+                            "$ref": "#/definitions/model.ZbDocument"
                         }
                     }
                 ],
@@ -1374,7 +1374,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentCategory"
+                    "ZbDocumentCategory"
                 ],
                 "summary": "创建DocumentCategory",
                 "parameters": [
@@ -1384,7 +1384,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentCategory"
+                            "$ref": "#/definitions/model.ZbDocumentCategory"
                         }
                     }
                 ],
@@ -1412,7 +1412,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentCategory"
+                    "ZbDocumentCategory"
                 ],
                 "summary": "删除DocumentCategory",
                 "parameters": [
@@ -1422,7 +1422,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentCategory"
+                            "$ref": "#/definitions/model.ZbDocumentCategory"
                         }
                     }
                 ],
@@ -1450,7 +1450,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentCategory"
+                    "ZbDocumentCategory"
                 ],
                 "summary": "批量删除DocumentCategory",
                 "parameters": [
@@ -1488,7 +1488,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentCategory"
+                    "ZbDocumentCategory"
                 ],
                 "summary": "用id查询DocumentCategory",
                 "parameters": [
@@ -1498,7 +1498,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentCategory"
+                            "$ref": "#/definitions/model.ZbDocumentCategory"
                         }
                     }
                 ],
@@ -1526,7 +1526,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentCategory"
+                    "ZbDocumentCategory"
                 ],
                 "summary": "分页获取DocumentCategory列表",
                 "parameters": [
@@ -1564,7 +1564,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentCategory"
+                    "ZbDocumentCategory"
                 ],
                 "summary": "更新DocumentCategory",
                 "parameters": [
@@ -1574,7 +1574,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentCategory"
+                            "$ref": "#/definitions/model.ZbDocumentCategory"
                         }
                     }
                 ],
@@ -1602,7 +1602,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentKeyword"
+                    "ZbDocumentKeyword"
                 ],
                 "summary": "创建DocumentKeyword",
                 "parameters": [
@@ -1612,7 +1612,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentKeyword"
+                            "$ref": "#/definitions/model.ZbDocumentKeyword"
                         }
                     }
                 ],
@@ -1640,7 +1640,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentKeyword"
+                    "ZbDocumentKeyword"
                 ],
                 "summary": "删除DocumentKeyword",
                 "parameters": [
@@ -1650,7 +1650,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentKeyword"
+                            "$ref": "#/definitions/model.ZbDocumentKeyword"
                         }
                     }
                 ],
@@ -1678,7 +1678,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentKeyword"
+                    "ZbDocumentKeyword"
                 ],
                 "summary": "批量删除DocumentKeyword",
                 "parameters": [
@@ -1716,7 +1716,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentKeyword"
+                    "ZbDocumentKeyword"
                 ],
                 "summary": "用id查询DocumentKeyword",
                 "parameters": [
@@ -1726,7 +1726,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentKeyword"
+                            "$ref": "#/definitions/model.ZbDocumentKeyword"
                         }
                     }
                 ],
@@ -1754,7 +1754,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentKeyword"
+                    "ZbDocumentKeyword"
                 ],
                 "summary": "分页获取DocumentKeyword列表",
                 "parameters": [
@@ -1792,7 +1792,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "DocumentKeyword"
+                    "ZbDocumentKeyword"
                 ],
                 "summary": "更新DocumentKeyword",
                 "parameters": [
@@ -1802,7 +1802,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.DocumentKeyword"
+                            "$ref": "#/definitions/model.ZbDocumentKeyword"
                         }
                     }
                 ],
@@ -1830,7 +1830,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserDownloadRecord"
+                    "ZbUserDownloadRecord"
                 ],
                 "summary": "创建UserDownloadRecord",
                 "parameters": [
@@ -1840,7 +1840,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserDownloadRecord"
+                            "$ref": "#/definitions/model.ZbUserDownloadRecord"
                         }
                     }
                 ],
@@ -1868,7 +1868,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserDownloadRecord"
+                    "ZbUserDownloadRecord"
                 ],
                 "summary": "删除UserDownloadRecord",
                 "parameters": [
@@ -1878,7 +1878,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserDownloadRecord"
+                            "$ref": "#/definitions/model.ZbUserDownloadRecord"
                         }
                     }
                 ],
@@ -1906,7 +1906,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserDownloadRecord"
+                    "ZbUserDownloadRecord"
                 ],
                 "summary": "批量删除UserDownloadRecord",
                 "parameters": [
@@ -1944,7 +1944,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserDownloadRecord"
+                    "ZbUserDownloadRecord"
                 ],
                 "summary": "用id查询UserDownloadRecord",
                 "parameters": [
@@ -1954,7 +1954,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserDownloadRecord"
+                            "$ref": "#/definitions/model.ZbUserDownloadRecord"
                         }
                     }
                 ],
@@ -1982,7 +1982,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserDownloadRecord"
+                    "ZbUserDownloadRecord"
                 ],
                 "summary": "分页获取UserDownloadRecord列表",
                 "parameters": [
@@ -2020,7 +2020,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserDownloadRecord"
+                    "ZbUserDownloadRecord"
                 ],
                 "summary": "更新UserDownloadRecord",
                 "parameters": [
@@ -2030,7 +2030,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserDownloadRecord"
+                            "$ref": "#/definitions/model.ZbUserDownloadRecord"
                         }
                     }
                 ],
@@ -2302,7 +2302,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Label"
+                    "ZbLabel"
                 ],
                 "summary": "创建Label",
                 "parameters": [
@@ -2312,7 +2312,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Label"
+                            "$ref": "#/definitions/model.ZbLabel"
                         }
                     }
                 ],
@@ -2340,7 +2340,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Label"
+                    "ZbLabel"
                 ],
                 "summary": "删除Label",
                 "parameters": [
@@ -2350,7 +2350,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Label"
+                            "$ref": "#/definitions/model.ZbLabel"
                         }
                     }
                 ],
@@ -2378,7 +2378,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Label"
+                    "ZbLabel"
                 ],
                 "summary": "批量删除Label",
                 "parameters": [
@@ -2416,7 +2416,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Label"
+                    "ZbLabel"
                 ],
                 "summary": "用id查询Label",
                 "parameters": [
@@ -2426,7 +2426,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Label"
+                            "$ref": "#/definitions/model.ZbLabel"
                         }
                     }
                 ],
@@ -2454,7 +2454,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Label"
+                    "ZbLabel"
                 ],
                 "summary": "分页获取Label列表",
                 "parameters": [
@@ -2492,7 +2492,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Label"
+                    "ZbLabel"
                 ],
                 "summary": "更新Label",
                 "parameters": [
@@ -2502,7 +2502,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.Label"
+                            "$ref": "#/definitions/model.ZbLabel"
                         }
                     }
                 ],
@@ -2866,7 +2866,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserSearchRecord"
+                    "ZbUserSearchRecord"
                 ],
                 "summary": "创建UserSearchRecord",
                 "parameters": [
@@ -2876,7 +2876,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserSearchRecord"
+                            "$ref": "#/definitions/model.ZbUserSearchRecord"
                         }
                     }
                 ],
@@ -2904,7 +2904,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserSearchRecord"
+                    "ZbUserSearchRecord"
                 ],
                 "summary": "删除UserSearchRecord",
                 "parameters": [
@@ -2914,7 +2914,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserSearchRecord"
+                            "$ref": "#/definitions/model.ZbUserSearchRecord"
                         }
                     }
                 ],
@@ -2942,7 +2942,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserSearchRecord"
+                    "ZbUserSearchRecord"
                 ],
                 "summary": "批量删除UserSearchRecord",
                 "parameters": [
@@ -2980,7 +2980,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserSearchRecord"
+                    "ZbUserSearchRecord"
                 ],
                 "summary": "用id查询UserSearchRecord",
                 "parameters": [
@@ -2990,7 +2990,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserSearchRecord"
+                            "$ref": "#/definitions/model.ZbUserSearchRecord"
                         }
                     }
                 ],
@@ -3018,7 +3018,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserSearchRecord"
+                    "ZbUserSearchRecord"
                 ],
                 "summary": "分页获取UserSearchRecord列表",
                 "parameters": [
@@ -3056,7 +3056,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserSearchRecord"
+                    "ZbUserSearchRecord"
                 ],
                 "summary": "更新UserSearchRecord",
                 "parameters": [
@@ -3066,7 +3066,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserSearchRecord"
+                            "$ref": "#/definitions/model.ZbUserSearchRecord"
                         }
                     }
                 ],
@@ -3094,7 +3094,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserShareRecord"
+                    "ZbUserShareRecord"
                 ],
                 "summary": "创建UserShareRecord",
                 "parameters": [
@@ -3104,7 +3104,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserShareRecord"
+                            "$ref": "#/definitions/model.ZbUserShareRecord"
                         }
                     }
                 ],
@@ -3132,7 +3132,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserShareRecord"
+                    "ZbUserShareRecord"
                 ],
                 "summary": "删除UserShareRecord",
                 "parameters": [
@@ -3142,7 +3142,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserShareRecord"
+                            "$ref": "#/definitions/model.ZbUserShareRecord"
                         }
                     }
                 ],
@@ -3170,7 +3170,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserShareRecord"
+                    "ZbUserShareRecord"
                 ],
                 "summary": "批量删除UserShareRecord",
                 "parameters": [
@@ -3208,7 +3208,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserShareRecord"
+                    "ZbUserShareRecord"
                 ],
                 "summary": "用id查询UserShareRecord",
                 "parameters": [
@@ -3218,7 +3218,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserShareRecord"
+                            "$ref": "#/definitions/model.ZbUserShareRecord"
                         }
                     }
                 ],
@@ -3246,7 +3246,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserShareRecord"
+                    "ZbUserShareRecord"
                 ],
                 "summary": "分页获取UserShareRecord列表",
                 "parameters": [
@@ -3284,7 +3284,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserShareRecord"
+                    "ZbUserShareRecord"
                 ],
                 "summary": "更新UserShareRecord",
                 "parameters": [
@@ -3294,7 +3294,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserShareRecord"
+                            "$ref": "#/definitions/model.ZbUserShareRecord"
                         }
                     }
                 ],
@@ -4216,7 +4216,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserLabel"
+                    "ZbUserLabel"
                 ],
                 "summary": "创建UserLabel",
                 "parameters": [
@@ -4226,7 +4226,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserLabel"
+                            "$ref": "#/definitions/model.ZbUserLabel"
                         }
                     }
                 ],
@@ -4254,7 +4254,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserLabel"
+                    "ZbUserLabel"
                 ],
                 "summary": "删除UserLabel",
                 "parameters": [
@@ -4264,7 +4264,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserLabel"
+                            "$ref": "#/definitions/model.ZbUserLabel"
                         }
                     }
                 ],
@@ -4292,7 +4292,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserLabel"
+                    "ZbUserLabel"
                 ],
                 "summary": "批量删除UserLabel",
                 "parameters": [
@@ -4330,7 +4330,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserLabel"
+                    "ZbUserLabel"
                 ],
                 "summary": "用id查询UserLabel",
                 "parameters": [
@@ -4340,7 +4340,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserLabel"
+                            "$ref": "#/definitions/model.ZbUserLabel"
                         }
                     }
                 ],
@@ -4368,7 +4368,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserLabel"
+                    "ZbUserLabel"
                 ],
                 "summary": "分页获取UserLabel列表",
                 "parameters": [
@@ -4406,7 +4406,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "UserLabel"
+                    "ZbUserLabel"
                 ],
                 "summary": "更新UserLabel",
                 "parameters": [
@@ -4416,7 +4416,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.UserLabel"
+                            "$ref": "#/definitions/model.ZbUserLabel"
                         }
                     }
                 ],
@@ -4780,6 +4780,12 @@
                 },
                 "secretKey": {
                     "type": "string"
+                },
+                "useCdnDomains": {
+                    "type": "boolean"
+                },
+                "useHttps": {
+                    "type": "boolean"
                 }
             }
         },
@@ -4904,84 +4910,6 @@
                 }
             }
         },
-        "model.Document": {
-            "type": "object",
-            "properties": {
-                "browseNum": {
-                    "type": "integer"
-                },
-                "browseVirtualNum": {
-                    "type": "integer"
-                },
-                "collectionNum": {
-                    "type": "integer"
-                },
-                "content": {
-                    "type": "string"
-                },
-                "downloadNum": {
-                    "type": "integer"
-                },
-                "downloadVirtualNum": {
-                    "type": "integer"
-                },
-                "pdfFileUrl": {
-                    "type": "string"
-                },
-                "releasedAt": {
-                    "type": "string"
-                },
-                "revisedAt": {
-                    "type": "string"
-                },
-                "shareNum": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "wordFileUrl": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.DocumentCategory": {
-            "type": "object",
-            "properties": {
-                "categoryLevel": {
-                    "type": "integer"
-                },
-                "parentId": {
-                    "type": "integer"
-                },
-                "sort": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "model.DocumentKeyword": {
-            "type": "object",
-            "properties": {
-                "documentNum": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "searchNum": {
-                    "type": "integer"
-                },
-                "sort": {
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "integer"
-                }
-            }
-        },
         "model.ExaCustomer": {
             "type": "object",
             "properties": {
@@ -5052,23 +4980,6 @@
                 },
                 "fieldType": {
                     "type": "string"
-                }
-            }
-        },
-        "model.Label": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "userNum": {
-                    "type": "integer"
                 }
             }
         },
@@ -5345,81 +5256,103 @@
                 }
             }
         },
-        "model.UserBrowseRecord": {
+        "model.ZbDocument": {
             "type": "object",
             "properties": {
-                "browsedAt": {
+                "browseNum": {
+                    "type": "integer"
+                },
+                "browseVirtualNum": {
+                    "type": "integer"
+                },
+                "collectionNum": {
+                    "type": "integer"
+                },
+                "content": {
                     "type": "string"
                 },
-                "doucmentId": {
+                "downloadNum": {
                     "type": "integer"
                 },
-                "repeatNum": {
+                "downloadVirtualNum": {
                     "type": "integer"
                 },
-                "userId": {
+                "pdfFileUrl": {
+                    "type": "string"
+                },
+                "releasedAt": {
+                    "type": "string"
+                },
+                "revisedAt": {
+                    "type": "string"
+                },
+                "shareNum": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "wordFileUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.ZbDocumentCategory": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ZbDocumentCategory"
+                    }
+                },
+                "hidden": {
+                    "type": "integer"
+                },
+                "parentId": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.ZbDocumentKeyword": {
+            "type": "object",
+            "properties": {
+                "documentNum": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "searchNum": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "status": {
                     "type": "integer"
                 }
             }
         },
-        "model.UserDownloadRecord": {
+        "model.ZbLabel": {
             "type": "object",
             "properties": {
-                "doucmentId": {
-                    "type": "integer"
-                },
-                "downloadedAt": {
+                "description": {
                     "type": "string"
                 },
-                "repeatNum": {
-                    "type": "integer"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            }
-        },
-        "model.UserLabel": {
-            "type": "object",
-            "properties": {
-                "labelId": {
-                    "type": "integer"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            }
-        },
-        "model.UserSearchRecord": {
-            "type": "object",
-            "properties": {
-                "keyword": {
+                "name": {
                     "type": "string"
                 },
-                "repeatNum": {
+                "status": {
                     "type": "integer"
                 },
-                "searchedAt": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "integer"
-                }
-            }
-        },
-        "model.UserShareRecord": {
-            "type": "object",
-            "properties": {
-                "doucmentId": {
-                    "type": "integer"
-                },
-                "sharedAt": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "integer"
-                },
-                "userId": {
+                "userNum": {
                     "type": "integer"
                 }
             }
@@ -5459,6 +5392,85 @@
                 },
                 "uuid": {
                     "type": "string"
+                }
+            }
+        },
+        "model.ZbUserBrowseRecord": {
+            "type": "object",
+            "properties": {
+                "browsedAt": {
+                    "type": "string"
+                },
+                "doucmentId": {
+                    "type": "integer"
+                },
+                "repeatNum": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ZbUserDownloadRecord": {
+            "type": "object",
+            "properties": {
+                "doucmentId": {
+                    "type": "integer"
+                },
+                "downloadedAt": {
+                    "type": "string"
+                },
+                "repeatNum": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ZbUserLabel": {
+            "type": "object",
+            "properties": {
+                "labelId": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ZbUserSearchRecord": {
+            "type": "object",
+            "properties": {
+                "keyword": {
+                    "type": "string"
+                },
+                "repeatNum": {
+                    "type": "integer"
+                },
+                "searchedAt": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ZbUserShareRecord": {
+            "type": "object",
+            "properties": {
+                "doucmentId": {
+                    "type": "integer"
+                },
+                "sharedAt": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
                 }
             }
         },
@@ -5526,7 +5538,13 @@
         "request.DocumentCategorySearch": {
             "type": "object",
             "properties": {
-                "categoryLevel": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ZbDocumentCategory"
+                    }
+                },
+                "hidden": {
                     "type": "integer"
                 },
                 "page": {

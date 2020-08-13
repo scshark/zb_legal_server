@@ -7,6 +7,7 @@ import (
 	"gin-vue-admin/model/request"
 	resp "gin-vue-admin/model/response"
 	"gin-vue-admin/service"
+	"gin-vue-admin/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,16 @@ import (
 func CreateDocumentCategory(c *gin.Context) {
 	var docCategory model.ZbDocumentCategory
 	_ = c.ShouldBindJSON(&docCategory)
+	// 参数验证
+	CategoryVerify := utils.Rules{
+		"Title": {utils.NotEmpty()},
+	}
+	CategoryVerifyErr := utils.Verify(docCategory, CategoryVerify)
+	if CategoryVerifyErr != nil {
+		response.FailWithMessage(CategoryVerifyErr.Error(), c)
+		return
+	}
+	// 数据逻辑
 	err := service.CreateDocumentCategory(docCategory)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("创建失败，%v", err), c)
@@ -38,9 +49,14 @@ func CreateDocumentCategory(c *gin.Context) {
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
 // @Router /docCategory/deleteDocumentCategory [delete]
 func DeleteDocumentCategory(c *gin.Context) {
-	var docCategory model.ZbDocumentCategory
-	_ = c.ShouldBindJSON(&docCategory)
-	err := service.DeleteDocumentCategory(docCategory)
+	var docId request.GetById
+	_ = c.ShouldBindJSON(&docId)
+	verifyErr := utils.Verify(docId, utils.CustomizeMap["IdVerify"])
+	if verifyErr != nil {
+		response.FailWithMessage(verifyErr.Error(), c)
+		return
+	}
+	err := service.DeleteDocumentCategory(uint(docId.Id))
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("删除失败，%v", err), c)
 	} else {
@@ -58,7 +74,7 @@ func DeleteDocumentCategory(c *gin.Context) {
 // @Router /docCategory/deleteDocumentCategoryByIds [delete]
 func DeleteDocumentCategoryByIds(c *gin.Context) {
 	var IDS request.IdsReq
-    _ = c.ShouldBindJSON(&IDS)
+	_ = c.ShouldBindJSON(&IDS)
 	err := service.DeleteDocumentCategoryByIds(IDS)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("删除失败，%v", err), c)
@@ -78,6 +94,16 @@ func DeleteDocumentCategoryByIds(c *gin.Context) {
 func UpdateDocumentCategory(c *gin.Context) {
 	var docCategory model.ZbDocumentCategory
 	_ = c.ShouldBindJSON(&docCategory)
+
+	categoryVerify := utils.Rules{
+		"Title":  {utils.NotEmpty()},
+		"Sort":   {utils.Ge("0")},
+	}
+	categoryVerifyErr := utils.Verify(docCategory, categoryVerify)
+	if categoryVerifyErr != nil {
+		response.FailWithMessage(categoryVerifyErr.Error(), c)
+		return
+	}
 	err := service.UpdateDocumentCategory(&docCategory)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("更新失败，%v", err), c)
@@ -95,13 +121,19 @@ func UpdateDocumentCategory(c *gin.Context) {
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
 // @Router /docCategory/findDocumentCategory [get]
 func FindDocumentCategory(c *gin.Context) {
-	var docCategory model.ZbDocumentCategory
-	_ = c.ShouldBindQuery(&docCategory)
-	err, redocCategory := service.GetDocumentCategory(docCategory.ID)
+
+	var docId request.GetById
+	_ = c.ShouldBindQuery(&docId)
+	verifyErr := utils.Verify(docId, utils.CustomizeMap["IdVerify"])
+	if verifyErr != nil {
+		response.FailWithMessage(verifyErr.Error(), c)
+		return
+	}
+	err, docCategory := service.GetDocumentCategory(uint(docId.Id))
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("查询失败，%v", err), c)
 	} else {
-		response.OkWithData(gin.H{"redocCategory": redocCategory}, c)
+		response.OkWithData(gin.H{"docCategory": docCategory}, c)
 	}
 }
 
@@ -116,6 +148,7 @@ func FindDocumentCategory(c *gin.Context) {
 func GetDocumentCategoryList(c *gin.Context) {
 	var pageInfo request.DocumentCategorySearch
 	_ = c.ShouldBindQuery(&pageInfo)
+
 	err, list, total := service.GetDocumentCategoryInfoList(pageInfo)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("获取数据失败，%v", err), c)
