@@ -4,6 +4,8 @@ import (
 	"gin-vue-admin/global"
 	"gin-vue-admin/model"
 	"gin-vue-admin/model/request"
+	"strconv"
+	"time"
 )
 
 // @title    CreateDocument
@@ -13,7 +15,14 @@ import (
 // @return    err             error
 
 func CreateDocument(doc model.ZbDocument) (err error) {
+	// 标题 分类 标签 上传地址
+	doc.ReleasedAt = time.Now()
 	err = global.GVA_DB.Create(&doc).Error
+
+	if len(doc.ClassId) > 0 {
+		err = CreateDocCategoryRelation(strconv.Itoa(int(doc.ID)),doc.ClassId)
+	}
+
 	return err
 }
 

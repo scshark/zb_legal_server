@@ -7,6 +7,7 @@ import (
 	"gin-vue-admin/model/request"
 	resp "gin-vue-admin/model/response"
 	"gin-vue-admin/service"
+	"gin-vue-admin/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,26 @@ import (
 func CreateDocument(c *gin.Context) {
 	var doc model.ZbDocument
 	_ = c.ShouldBindJSON(&doc)
+
+	// 参数验证 标题 多个分类ID 上传的file_url 多个关键词 虚拟浏览数 虚拟下载数
+	docVerify := utils.Rules{
+		"Title": {utils.NotEmpty()},
+		"WordFileUrl": {utils.NotEmpty()},
+	}
+	docVerifyErr := utils.Verify(doc, docVerify)
+	if docVerifyErr != nil {
+		response.FailWithMessage(docVerifyErr.Error(), c)
+		return
+	}
+	// 验证所选分类合法
+	if len(doc.ClassId) > 0  {
+		verifyErr := service.DocCategoryVerify(doc.ClassId)
+		if verifyErr != nil {
+			response.FailWithMessage(verifyErr.Error(), c)
+			return
+		}
+	}
+
 	err := service.CreateDocument(doc)
 	if err != nil {
 		response.FailWithMessage(fmt.Sprintf("创建失败，%v", err), c)

@@ -32,6 +32,8 @@ func DBTables() {
 		model.ZbDocument{},
 		model.ZbDocumentCategory{},
 		model.ZbDocumentKeyword{},
+		model.ZbDocumentCategoryRelation{},
+		model.ZbDocumentImage{},
 	)
 
 	global.GVA_LOG.Debug("register table success")

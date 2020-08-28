@@ -161,3 +161,4 @@ func GetDocumentCategoryList(c *gin.Context) {
 		}, c)
 	}
 }
+

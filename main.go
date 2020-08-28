@@ -4,7 +4,6 @@ import (
 	"gin-vue-admin/core"
 	"gin-vue-admin/global"
 	"gin-vue-admin/initialize"
-	//"runtime"
 )
 
 // @title Swagger Example API
@@ -15,6 +14,7 @@ import (
 // @name x-token
 // @BasePath /
 func main() {
+
 	switch global.GVA_CONFIG.System.DbType {
 	case "mysql":
 		initialize.Mysql()

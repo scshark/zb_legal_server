@@ -10,3 +10,6 @@ db/
 main
 gin-vue-admin
 latest_log
+*.pdf
+*.jpg
+*.docx

@@ -150,3 +150,14 @@ func getAllCategoryList(category *model.ZbDocumentCategory, categoryTree map[int
 	}
 	return err
 }
+
+
+func DocCategoryVerify(cids []int) (err error){
+
+	var total int
+	err = global.GVA_DB.Model(&model.ZbDocumentCategory{}).Where(cids).Count(&total).Error
+	if total < len(cids) {
+		return errors.New("已选分类被停用")
+	}
+	return err
+}

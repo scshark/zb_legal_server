@@ -19,10 +19,10 @@ type ZbDocument struct {
       DownloadVirtualNum  int `json:"downloadVirtualNum" form:"downloadVirtualNum" gorm:"column:download_virtual_num;comment:'虚拟下载量';type:int(10)"`
       CollectionNum  int `json:"collectionNum" form:"collectionNum" gorm:"column:collection_num;comment:'收藏数量';type:int(10)"`
       ShareNum  int `json:"shareNum" form:"shareNum" gorm:"column:share_num;comment:'分享数量';type:int(10)"`
-      ReleasedAt  time.Time `json:"releasedAt" form:"releasedAt" gorm:"column:released_at;comment:'发布日期';type:timestamp"`
-      RevisedAt  time.Time `json:"revisedAt" form:"revisedAt" gorm:"column:revised_at;comment:'最后修改日期';type:timestamp"`
+      ReleasedAt  time.Time `json:"releasedAt" form:"releasedAt" gorm:"column:released_at;comment:'发布日期';type:timestamp;default:null"`
+      RevisedAt  time.Time `json:"revisedAt" form:"revisedAt" gorm:"column:revised_at;comment:'最后修改日期';type:timestamp;default:null"`
+      ClassId  []int `json:"classId" form:"classId" gorm:"-"`
 }
-
 
 func (ZbDocument) TableName() string {
   return "zb_document"
